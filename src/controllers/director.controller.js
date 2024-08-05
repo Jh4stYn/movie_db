@@ -1,33 +1,33 @@
 const catchError = require('../utils/catchError');
-const Actor = require('../models/Actor.model');
+const Director = require('../models/Director.model');
 
 const getAll = catchError(async(req, res) => {
-    const results = await Actor.findAll();
+    const results = await Director.findAll();
     return res.json(results);
 });
 
 const create = catchError(async(req, res) => {
-    const result = await Actor.create(req.body);
+    const result = await Director.create(req.body);
     return res.status(201).json(result);
 });
 
 const getOne = catchError(async(req, res) => {
     const { id } = req.params;
-    const result = await Actor.findByPk(id);
+    const result = await Director.findByPk(id);
     if(!result) return res.sendStatus(404);
     return res.json(result);
 });
 
 const remove = catchError(async(req, res) => {
     const { id } = req.params;
-    const result = await Actor.destroy({ where: {id} });
+    const result = await Director.destroy({ where: {id} });
     if(!result) return res.sendStatus(404);
     return res.sendStatus(204);
 });
 
 const update = catchError(async(req, res) => {
     const { id } = req.params;
-    const result = await Actor.update(
+    const result = await Director.update(
         req.body,
         { where: {id}, returning: true }
     );
