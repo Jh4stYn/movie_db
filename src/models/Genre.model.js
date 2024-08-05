@@ -4,7 +4,8 @@ const sequelize = require('../utils/connection');
 const Genre = sequelize.define('genre', {
     name: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true,
     },
 });
 
